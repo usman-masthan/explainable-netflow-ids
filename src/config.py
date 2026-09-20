@@ -1,6 +1,6 @@
 """
 Configuration and Schema Definitions for Explainable NetFlow IDS.
-Designed for LSEG Security Operations & Fusion Management.
+Designed for Enterprise Cyber Fusion & Security Operations.
 """
 
 from dataclasses import dataclass, field

@@ -7,16 +7,16 @@
 [![Model: Isolation Forest](https://img.shields.io/badge/Model-Isolation%20Forest-orange.svg)]()
 [![XAI: TreeSHAP](https://img.shields.io/badge/XAI-TreeSHAP-purple.svg)]()
 [![Dashboard: Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-red.svg)]()
-[![Target: LSEG SecOps](https://img.shields.io/badge/Target-LSEG%20Security%20Operations%20%26%20Fusion-darkblue.svg)]()
+[![Target: Enterprise SecOps](https://img.shields.io/badge/Target-Enterprise%20Security%20Fusion%20%26%20SecOps-darkblue.svg)]()
 
-> **Production-grade Network Anomaly Detection and Model Explainability (XAI) engineered for London Stock Exchange Group (LSEG) Security Operations & Fusion Management.**  
+> **Production-grade Network Anomaly Detection and Model Explainability (XAI) engineered for Enterprise Cyber Fusion Centres & Security Operations (SecOps).**  
 > Bridges machine learning, high-throughput network telemetry, and automated SOAR response to deliver auditable, false-positive-optimized cyber threat detection.
 
 ---
 
 ## 1. Executive Summary & Operational Context
 
-In critical financial market infrastructure—such as the London Stock Exchange Group’s capital markets, clearing, settlement, and market data platforms—monitoring high-volume networks is paramount. Across 100Gbps+ trading backbones, capturing full packet payload (PCAP) is cost-prohibitive, introduces severe storage bottlenecks, and violates regulatory data privacy rules.
+In critical financial market infrastructure and global capital markets—such as institutional trading platforms, clearing, settlement, and market data feeds—monitoring high-volume networks is paramount. Across 100Gbps+ trading backbones, capturing full packet payload (PCAP) is cost-prohibitive, introduces severe storage bottlenecks, and violates regulatory data privacy rules.
 
 **NetFlow / IPFIX telemetry** solves this by summarizing network sessions into metadata (IPs, ports, protocols, durations, packet counts, byte volumes, and TCP flags). However, modern Fusion Security Operations Centers (SOCs) face two major obstacles when applying machine learning to NetFlow:
 

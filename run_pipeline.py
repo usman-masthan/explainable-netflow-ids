@@ -1,7 +1,7 @@
 """
 End-to-End Orchestrator and CLI for Explainable NetFlow IDS.
 Trains Isolation Forest, generates TreeSHAP explanations, evaluates SecOps metrics,
-and exports Splunk CIM / SOAR alerts for LSEG Security Operations.
+and exports Splunk CIM / SOAR alerts for Enterprise Security Operations.
 """
 
 import os
@@ -54,7 +54,7 @@ def main():
 
     print("=" * 78)
     print(" EXPLAINABLE NETFLOW INTRUSION DETECTION SYSTEM (X-NetFlow-IDS)")
-    print(" LSEG Security Operations & Fusion Management Pipeline")
+    print(" Enterprise Security Operations & Cyber Fusion Pipeline")
     print("=" * 78)
 
     # 1. Telemetry Generation & Ingestion

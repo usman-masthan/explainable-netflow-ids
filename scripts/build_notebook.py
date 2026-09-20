@@ -15,10 +15,10 @@ cells = [
         "metadata": {},
         "source": [
             "# Explainable NetFlow Intrusion Detection & Fusion Triage (X-NetFlow-IDS)\n",
-            "### Anomaly Detection, TreeSHAP Attribution & SOAR Alerting for LSEG Security Operations\n",
+            "### Anomaly Detection, TreeSHAP Attribution & SOAR Alerting for Enterprise SecOps\n",
             "\n",
-            "**Author:** Candidate for Associate – Security Operations & Fusion Management  \n",
-            "**Target Domain:** London Stock Exchange Group (LSEG) Financial Market Infrastructure  \n",
+            "**Author:** Cyber Security Engineer & Anomaly Detection Specialist  \n",
+            "**Target Domain:** Enterprise Financial Infrastructure & Critical Networks  \n",
             "\n",
             "---\n",
             "\n",
@@ -295,7 +295,7 @@ cells = [
             "The trade-off curve illustrates the fundamental tension in security operations:\n",
             "- Lowering the threshold boosts recall towards 95%+ but increases the daily false alarm volume.\n",
             "- Raising the threshold suppresses false alarms to $< 3\\%$, focusing analyst attention exclusively on high-confidence, critical threats (DDoS, large exfiltration bursts, C2 beacons).\n",
-            "In an LSEG Fusion environment, this trade-off curve empowers leadership to calibrate detection sensitivity based on operational staffing and threat posture."
+            "In an enterprise Cyber Fusion environment, this trade-off curve empowers leadership to calibrate detection sensitivity based on operational staffing and threat posture."
         ]
     },
     {
@@ -324,7 +324,7 @@ cells = [
         "cell_type": "markdown",
         "metadata": {},
         "source": [
-            "## 10. Strategic Conclusion & LSEG Fusion Operations Value\n",
+            "## 10. Strategic Conclusion & Enterprise Fusion Operations Value\n",
             "\n",
             "This project successfully bridges engineering, machine learning, and security operations:\n",
             "1. **High-Throughput Scalability:** Operates on lightweight NetFlow metadata rather than costly PCAP, scaling effortlessly to 100Gbps financial market data streams.\n",
@@ -332,7 +332,7 @@ cells = [
             "3. **Operational Optimization:** Quantifies and controls alert fatigue through False Positive Rate calibration and alert trade-off curves.\n",
             "4. **Automation-Ready:** Exports structured alerts aligned with Splunk CIM and automated SOAR response workflows.\n",
             "\n",
-            "This architecture directly addresses the mandate of the **LSEG Security Operations & Fusion Management** team: transforming raw network data into actionable, auditable, and automated security insight."
+            "This architecture directly addresses the mandate of modern Security Operations & Cyber Fusion teams: transforming raw network data into actionable, auditable, and automated security insight."
         ]
     }
 ]

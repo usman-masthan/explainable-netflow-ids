@@ -1,7 +1,7 @@
 """
 Streamlit Security Fusion Dashboard for Explainable NetFlow IDS.
 Interactive operational triage, TreeSHAP explanation viewer, and SOAR response console.
-Designed for LSEG Security Operations & Fusion Management.
+Engineered for Enterprise Cyber Fusion Centres & Critical Infrastructure SecOps.
 """
 
 import os
@@ -33,57 +33,174 @@ from src.triage_enricher import FusionTriageEnricher
 
 # Page Configuration
 st.set_page_config(
-    page_title="LSEG Security Fusion | Explainable NetFlow IDS",
+    page_title="Cyber Fusion Centre | Explainable NetFlow IDS",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",
 )
 
-# Custom Styling
+# Custom High-End Styling
 st.markdown(
     """
     <style>
-    .main-title {
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #002D62;
-        margin-bottom: 0.2rem;
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    html, body, [class*="css"] {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
-    .sub-title {
-        font-size: 1.0rem;
-        color: #5A6B7C;
-        margin-bottom: 1.5rem;
+
+    code, pre, .mono-font {
+        font-family: 'JetBrains Mono', monospace !important;
     }
-    .kpi-card {
-        background: #F4F6F9;
-        border-radius: 8px;
-        padding: 12px 16px;
-        border-left: 4px solid #0052CC;
+
+    /* Top Executive Banner */
+    .fusion-navbar {
+        background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+        padding: 18px 24px;
+        margin-bottom: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
-    .kpi-val {
-        font-size: 1.6rem;
-        font-weight: 700;
-        color: #172B4D;
+    .brand-title {
+        font-size: 1.55rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+    .brand-subtitle {
+        font-size: 0.88rem;
+        color: #94A3B8;
+        margin-top: 3px;
+        font-weight: 400;
+    }
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(16, 185, 129, 0.12);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        color: #34D399;
+        padding: 6px 14px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+    }
+    .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #10B981;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #10B981;
+    }
+
+    /* KPI Cards */
+    .kpi-container {
+        background: #FFFFFF;
+        border: 1px solid #E2E8F0;
+        border-radius: 12px;
+        padding: 16px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        position: relative;
+        overflow: hidden;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-container:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    }
+    .kpi-container.highlight-blue {
+        border-top: 4px solid #2563EB;
+    }
+    .kpi-container.highlight-red {
+        border-top: 4px solid #DC2626;
+    }
+    .kpi-container.highlight-purple {
+        border-top: 4px solid #7C3AED;
+    }
+    .kpi-container.highlight-green {
+        border-top: 4px solid #059669;
     }
     .kpi-label {
-        font-size: 0.85rem;
-        color: #5E6C84;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .badge-critical {
-        background-color: #FFEBE6;
-        color: #DE350B;
-        padding: 3px 8px;
-        border-radius: 4px;
+        font-size: 0.78rem;
         font-weight: 600;
+        color: #64748B;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+    }
+    .kpi-value {
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: #0F172A;
+        margin-top: 4px;
+        line-height: 1.2;
+    }
+    .kpi-sub {
+        font-size: 0.8rem;
+        color: #94A3B8;
+        margin-top: 6px;
+    }
+
+    /* Severity Badges */
+    .badge-critical {
+        background: #FEF2F2;
+        color: #DC2626;
+        border: 1px solid #FECACA;
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.78rem;
     }
     .badge-high {
-        background-color: #FFF0B3;
-        color: #172B4D;
-        padding: 3px 8px;
-        border-radius: 4px;
-        font-weight: 600;
+        background: #FFFBEB;
+        color: #D97706;
+        border: 1px solid #FDE68A;
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.78rem;
+    }
+    .badge-medium {
+        background: #EFF6FF;
+        color: #2563EB;
+        border: 1px solid #BFDBFE;
+        padding: 3px 10px;
+        border-radius: 6px;
+        font-weight: 700;
+        font-size: 0.78rem;
+    }
+
+    /* Telemetry Pill */
+    .flow-pill {
+        display: inline-block;
+        background: #F8FAFC;
+        border: 1px solid #E2E8F0;
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 0.85rem;
+        color: #1E293B;
+        margin-bottom: 8px;
+        margin-right: 8px;
+    }
+
+    /* Briefing Container */
+    .briefing-card {
+        background: #F8FAFC;
+        border-left: 4px solid #2563EB;
+        border-radius: 0 8px 8px 0;
+        padding: 14px 18px;
+        margin: 12px 0;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: #1E293B;
     }
     </style>
     """,
@@ -113,8 +230,25 @@ def load_pipeline():
 
 
 def main():
-    st.markdown('<div class="main-title">🛡️ London Stock Exchange Group | Security Fusion Centre</div>', unsafe_allow_html=True)
-    st.markdown('<div class="sub-title">Explainable NetFlow Anomaly Detection & Automated SOAR Triage Console</div>', unsafe_allow_html=True)
+    # Top Navbar Header
+    st.markdown(
+        """
+        <div class="fusion-navbar">
+            <div class="brand-title">
+                <span>🛡️</span>
+                <div>
+                    <div>ENTERPRISE CYBER FUSION CENTRE</div>
+                    <div class="brand-subtitle">Autonomous NetFlow Telemetry Anomaly Detection & Explainable AI (XAI) Console</div>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span class="pulse-dot"></span>
+                <span>SENSORS ONLINE &bull; NETFLOW V9 / IPFIX</span>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
 
     pipeline_data = load_pipeline()
     if pipeline_data[0] is None:
@@ -124,38 +258,70 @@ def main():
     train_df, preprocessor, detector, explainer = pipeline_data
 
     # Sidebar
-    st.sidebar.image("https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/London_Stock_Exchange_Group_logo.svg/320px-London_Stock_Exchange_Group_logo.svg.png", width=180)
-    st.sidebar.markdown("### Operational Controls")
-
-    # Data Source Selection
-    data_mode = st.sidebar.radio(
-        "Telemetry Source",
-        ["Default Test Telemetry (2,000 Flows)", "Upload NetFlow CSV"],
+    st.sidebar.markdown(
+        """
+        <div style="padding: 10px 0 16px 0;">
+            <div style="font-size: 1.1rem; font-weight: 800; color: #0F172A; letter-spacing: -0.3px;">
+                ⚡ FUSION MANAGEMENT
+            </div>
+            <div style="font-size: 0.8rem; color: #64748B;">
+                SecOps Operational Controls
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
-    if data_mode == "Upload NetFlow CSV":
-        uploaded_file = st.sidebar.file_uploader("Upload CSV", type=["csv"])
+    # Telemetry Feed Source
+    telemetry_options = ["Default Synthetic Evaluation (2,000 Flows)"]
+    if (DATA_DIR / "cidds001_converted.csv").exists():
+        telemetry_options.append("CIDDS-001 Benchmark Telemetry (500 Flows)")
+    telemetry_options.append("Upload Custom NetFlow CSV")
+
+    data_mode = st.sidebar.selectbox("Telemetry Feed Source", telemetry_options)
+
+    if data_mode == "Upload Custom NetFlow CSV":
+        uploaded_file = st.sidebar.file_uploader("Upload Normalized CSV", type=["csv"])
         if uploaded_file is not None:
             raw_eval_df = NetFlowIngestion.validate_and_clean(pd.read_csv(uploaded_file))
         else:
             raw_eval_df = NetFlowIngestion.load_from_csv(DATA_DIR / "test_flows.csv")
+    elif data_mode.startswith("CIDDS-001"):
+        raw_eval_df = NetFlowIngestion.load_from_csv(DATA_DIR / "cidds001_converted.csv")
     else:
         raw_eval_df = NetFlowIngestion.load_from_csv(DATA_DIR / "test_flows.csv")
 
-    # Sensitivity Tuning
     st.sidebar.markdown("---")
-    st.sidebar.markdown("### SecOps Sensitivity Tuning")
+    st.sidebar.markdown("### Operational Sensitivity Calibration")
+
     default_th = float(detector.calibrated_threshold)
+    
+    # Preset sensitivity options
+    preset = st.sidebar.radio(
+        "Sensitivity Preset",
+        ["Custom Slider", "Strict Low-FPR (≤ 3% Target)", "Balanced SecOps", "High-Recall Recon Sweep"],
+        index=0,
+    )
+
+    if preset == "Strict Low-FPR (≤ 3% Target)":
+        slider_val = round(default_th, 2)
+    elif preset == "Balanced SecOps":
+        slider_val = 0.55
+    elif preset == "High-Recall Recon Sweep":
+        slider_val = 0.45
+    else:
+        slider_val = round(default_th, 2)
+
     threshold = st.sidebar.slider(
-        "Decision Threshold",
+        "Active Decision Threshold",
         min_value=0.20,
         max_value=0.95,
-        value=round(default_th, 2),
+        value=slider_val,
         step=0.01,
         help="Higher threshold lowers false positive alerts in SOC; lower threshold increases attack recall.",
     )
 
-    # Compute Features and Scores
+    # Compute Model Features and Anomaly Scores
     X_eval = preprocessor.transform(raw_eval_df)
     scores = detector.compute_anomaly_scores(X_eval)
     preds = (scores >= threshold).astype(int)
@@ -164,7 +330,7 @@ def main():
     n_anom = int(preds.sum())
     anom_rate = (n_anom / n_total) * 100.0
 
-    # Calculate actual FPR if labels exist
+    # Calculate actual FPR if ground truth labels exist
     has_labels = "is_anomaly" in raw_eval_df.columns
     if has_labels:
         y_true = raw_eval_df["is_anomaly"].values
@@ -174,38 +340,50 @@ def main():
     else:
         fpr = 0.0
 
-    # KPI Header Row
+    # KPI Header Cards
     kpi1, kpi2, kpi3, kpi4 = st.columns(4)
     with kpi1:
         st.markdown(
-            f"""<div class="kpi-card">
-                <div class="kpi-label">Monitored Flows</div>
-                <div class="kpi-val">{n_total:,}</div>
-            </div>""",
+            f"""
+            <div class="kpi-container highlight-blue">
+                <div class="kpi-label">Monitored Flow Volume</div>
+                <div class="kpi-value">{n_total:,}</div>
+                <div class="kpi-sub">Real-time session telemetry</div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
     with kpi2:
         st.markdown(
-            f"""<div class="kpi-card">
+            f"""
+            <div class="kpi-container highlight-red">
                 <div class="kpi-label">Flagged Anomalies</div>
-                <div class="kpi-val">{n_anom:,} <span style="font-size: 0.9rem; font-weight: normal; color: #DE350B;">({anom_rate:.1f}%)</span></div>
-            </div>""",
+                <div class="kpi-value">{n_anom:,}</div>
+                <div class="kpi-sub"><span style="color: #DC2626; font-weight:700;">{anom_rate:.1f}%</span> alert volume</div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
     with kpi3:
         st.markdown(
-            f"""<div class="kpi-card">
+            f"""
+            <div class="kpi-container highlight-purple">
                 <div class="kpi-label">Active Threshold</div>
-                <div class="kpi-val">{threshold:.2f}</div>
-            </div>""",
+                <div class="kpi-value">{threshold:.2f}</div>
+                <div class="kpi-sub">Calibrated baseline cutoff</div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
     with kpi4:
         st.markdown(
-            f"""<div class="kpi-card">
-                <div class="kpi-label">Operational FPR</div>
-                <div class="kpi-val">{fpr:.2f}%</div>
-            </div>""",
+            f"""
+            <div class="kpi-container highlight-green">
+                <div class="kpi-label">Operational False Positive Rate</div>
+                <div class="kpi-value">{fpr:.2f}%</div>
+                <div class="kpi-sub">Target budget: &le; 4.0%</div>
+            </div>
+            """,
             unsafe_allow_html=True,
         )
 
@@ -213,15 +391,13 @@ def main():
 
     # Main Dashboard Tabs
     tab_triage, tab_eval, tab_global_xai = st.tabs([
-        "🚨 Fusion Triage & Alert Queue",
-        "📊 SecOps Metrics & Fatigue Trade-offs",
-        "🧠 Global Model Interpretability",
+        "🚨 Fusion Triage & Incident Queue",
+        "📊 SecOps Performance & Fatigue Analysis",
+        "🧠 Global Explainability (TreeSHAP)",
     ])
 
-    # ---------------- TAB 1: Fusion Triage & Alert Queue ----------------
+    # ---------------- TAB 1: Fusion Triage & Incident Queue ----------------
     with tab_triage:
-        st.subheader("High-Priority Anomaly Queue")
-
         eval_display = raw_eval_df.copy()
         eval_display["anomaly_score"] = np.round(scores, 3)
         eval_display["status"] = np.where(preds == 1, "FLAGGED", "NORMAL")
@@ -229,33 +405,33 @@ def main():
         flagged_df = eval_display[eval_display["status"] == "FLAGGED"].sort_values("anomaly_score", ascending=False)
 
         if len(flagged_df) == 0:
-            st.success("No anomalies detected above current threshold! The network baseline is stable.")
+            st.success("✅ Baseline is stable. No telemetry anomalies exceed the active threshold.")
         else:
             col_list, col_details = st.columns([1.1, 1.4])
 
             with col_list:
-                st.markdown(f"**Alerts Requiring Analyst Review ({len(flagged_df)}):**")
+                st.markdown(f"#### Incident Queue ({len(flagged_df):,} Events)")
                 
-                # Attack filter
-                available_labels = ["All"] + list(flagged_df["label"].unique())
-                sel_label = st.selectbox("Filter by Threat Type:", available_labels)
-                if sel_label != "All":
+                # Threat type filter
+                threat_labels = ["All Threat Types"] + sorted(list(flagged_df["label"].unique()))
+                sel_label = st.selectbox("Filter Queue:", threat_labels)
+                if sel_label != "All Threat Types":
                     filtered_queue = flagged_df[flagged_df["label"] == sel_label]
                 else:
                     filtered_queue = flagged_df
 
                 selected_flow_id = st.selectbox(
-                    "Select Flow to Triage:",
+                    "Inspect Flow Telemetry:",
                     filtered_queue["flow_id"].tolist(),
-                    format_func=lambda fid: f"{fid} | Score: {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'anomaly_score'].values[0]} | {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'src_ip'].values[0]} -> {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'dst_ip'].values[0]}:{filtered_queue.loc[filtered_queue['flow_id'] == fid, 'dst_port'].values[0]}",
+                    format_func=lambda fid: f"{fid} | Score: {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'anomaly_score'].values[0]} | {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'src_ip'].values[0]} ➔ {filtered_queue.loc[filtered_queue['flow_id'] == fid, 'dst_ip'].values[0]}:{filtered_queue.loc[filtered_queue['flow_id'] == fid, 'dst_port'].values[0]}",
                 )
 
                 st.dataframe(
                     filtered_queue[[
-                        "flow_id", "src_ip", "dst_ip", "dst_port", "protocol", "byte_count", "anomaly_score", "label"
-                    ]].head(25),
+                        "flow_id", "src_ip", "dst_ip", "dst_port", "protocol", "packet_count", "byte_count", "anomaly_score", "label"
+                    ]].head(30),
                     use_container_width=True,
-                    height=350,
+                    height=420,
                 )
 
             with col_details:
@@ -263,52 +439,82 @@ def main():
                     selected_idx = int(raw_eval_df[raw_eval_df["flow_id"] == selected_flow_id].index[0])
                     selected_raw = raw_eval_df.iloc[selected_idx]
 
-                    # Generate explanation
+                    # Generate TreeSHAP explanation
                     exp = explainer.explain_flow(selected_idx, X_eval, raw_flow=selected_raw, top_k=4)
 
-                    # Build CIM Alert
+                    # Build Splunk CIM Alert
                     enricher = FusionTriageEnricher()
                     alert_json = enricher.create_alert(selected_raw, exp)
 
-                    st.markdown(f"### Incident Investigation: `{selected_flow_id}`")
+                    st.markdown(f"### Incident Details: `{selected_flow_id}`")
                     
-                    # Severity & Threat Intel
+                    # Severity & MITRE ATT&CK Header
                     sev = alert_json["severity"]
-                    badge_class = "badge-critical" if sev in ["CRITICAL", "HIGH"] else "badge-high"
+                    badge_class = "badge-critical" if sev in ["CRITICAL", "HIGH"] else "badge-medium"
                     st.markdown(
-                        f"""**Severity:** <span class="{badge_class}">{sev}</span> &nbsp;|&nbsp; 
-                        **MITRE ATT&CK:** `{alert_json['fusion_threat_intel']['mitre_technique_id']}` ({alert_json['fusion_threat_intel']['mitre_technique_name']}) &nbsp;|&nbsp; 
-                        **Tactic:** `{alert_json['fusion_threat_intel']['mitre_tactic']}`""",
+                        f"""
+                        <div style="margin-bottom: 12px;">
+                            <span class="{badge_class}">{sev} PRIORITY</span> &nbsp;&bull;&nbsp; 
+                            <b>MITRE ATT&CK:</b> <code>{alert_json['fusion_threat_intel']['mitre_technique_id']}</code> 
+                            ({alert_json['fusion_threat_intel']['mitre_technique_name']}) &nbsp;&bull;&nbsp; 
+                            <b>Tactic:</b> <i>{alert_json['fusion_threat_intel']['mitre_tactic']}</i>
+                        </div>
+                        """,
                         unsafe_allow_html=True,
                     )
 
-                    # Natural Language Narrative
-                    st.info(f"**🤖 Analyst Justification:**\n\n{exp['narrative']}")
+                    # Endpoint Metadata Pills
+                    st.markdown(
+                        f"""
+                        <div style="margin-bottom: 14px;">
+                            <span class="flow-pill"><b>SRC:</b> {selected_raw['src_ip']}:{selected_raw['src_port']}</span>
+                            <span class="flow-pill"><b>DST:</b> {selected_raw['dst_ip']}:{selected_raw['dst_port']}</span>
+                            <span class="flow-pill"><b>PROTO:</b> {selected_raw['protocol']}</span>
+                            <span class="flow-pill"><b>BYTES:</b> {selected_raw['byte_count']:,}</span>
+                            <span class="flow-pill"><b>PACKETS:</b> {selected_raw['packet_count']:,}</span>
+                            <span class="flow-pill"><b>FLAGS:</b> {selected_raw['tcp_flags']}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
 
-                    # SHAP Waterfall Plot
-                    st.markdown("**TreeSHAP Local Decision Attribution:**")
+                    # Natural Language Analyst Justification
+                    st.markdown(
+                        f"""
+                        <div class="briefing-card">
+                            <b>Analyst Triage Narrative:</b><br>
+                            {exp['narrative']}
+                        </div>
+                        """,
+                        unsafe_allow_html=True,
+                    )
+
+                    # TreeSHAP Waterfall Visualization
+                    st.markdown("#### Local TreeSHAP Decision Attribution")
                     fig_waterfall = explainer.plot_waterfall(selected_idx, X_eval)
                     st.pyplot(fig_waterfall, use_container_width=True)
 
-                    # SOAR Automation Actions
+                    # Automated SOAR Playbook Execution
                     st.markdown("#### Automated SOAR Playbook Response")
-                    st.write(f"**Recommended Workflow:** `{alert_json['soar_remediation']['recommended_playbook']}`")
+                    st.markdown(f"**Recommended Workflow:** `{alert_json['soar_remediation']['recommended_playbook']}`")
 
                     bcol1, bcol2 = st.columns(2)
                     with bcol1:
-                        if st.button("🚀 Trigger Containment Playbook", key=f"btn_soar_{selected_flow_id}"):
-                            st.toast(f"SOAR Action Dispatched: Host {selected_raw['src_ip']} quarantined!", icon="✅")
+                        if st.button("⚡ Execute Containment Playbook", key=f"btn_soar_{selected_flow_id}", use_container_width=True):
+                            st.toast(f"Containment dispatched: Endpoint {selected_raw['src_ip']} quarantined!", icon="🔒")
+                            st.success(f"Audit Log: SOAR Playbook triggered for {selected_flow_id}. Firewall policy updated.")
                     with bcol2:
                         st.download_button(
-                            label="📥 Export Splunk CIM Alert JSON",
+                            label="📥 Export Splunk CIM Event (JSON)",
                             data=json.dumps(alert_json, indent=2),
-                            file_name=f"alert_{selected_flow_id}.json",
+                            file_name=f"splunk_cim_alert_{selected_flow_id}.json",
                             mime="application/json",
+                            use_container_width=True,
                         )
 
-    # ---------------- TAB 2: SecOps Metrics & Alert Fatigue ----------------
+    # ---------------- TAB 2: SecOps Performance & Alert Fatigue ----------------
     with tab_eval:
-        st.subheader("SecOps Detection Performance & Fatigue Analysis")
+        st.subheader("SecOps Detection Performance & Alert Fatigue Analysis")
         
         eval_summary_path = REPORTS_DIR / "evaluation_summary.json"
         if eval_summary_path.exists():
@@ -316,10 +522,10 @@ def main():
                 metrics_data = json.load(f)
 
             mcol1, mcol2, mcol3, mcol4 = st.columns(4)
-            mcol1.metric("AUROC", f"{metrics_data.get('auroc', 0.951):.4f}")
-            mcol2.metric("PR-AUC", f"{metrics_data.get('pr_auc', 0.745):.4f}")
-            mcol3.metric("Precision", f"{metrics_data.get('precision', 0.671):.2%}")
-            mcol4.metric("Recall", f"{metrics_data.get('recall', 0.517):.2%}")
+            mcol1.metric("AUROC", f"{metrics_data.get('auroc', 0.951):.4f}", help="Discrimination across all decision thresholds")
+            mcol2.metric("PR-AUC (Avg Precision)", f"{metrics_data.get('pr_auc', 0.745):.4f}", help="Precision-Recall Area under curve")
+            mcol3.metric("Precision", f"{metrics_data.get('precision', 0.671):.2%}", help="True attacks divided by total alerts")
+            mcol4.metric("Recall", f"{metrics_data.get('recall', 0.517):.2%}", help="Attacks detected at calibrated threshold")
 
         st.markdown("---")
         pcol1, pcol2 = st.columns(2)
@@ -336,7 +542,7 @@ def main():
         st.markdown("---")
         ccol1, ccol2 = st.columns([1, 1.2])
         with ccol1:
-            st.markdown("**SOC Confusion Matrix (Triage Outcomes):**")
+            st.markdown("**Fusion SOC Confusion Matrix:**")
             if (FIGURES_DIR / "confusion_matrix.png").exists():
                 st.image(str(FIGURES_DIR / "confusion_matrix.png"), use_container_width=True)
 
@@ -346,14 +552,14 @@ def main():
                 atk_df = pd.DataFrame(metrics_data["per_attack_recall"]).T
                 atk_df.index.name = "Threat Archetype"
                 atk_df["recall"] = (atk_df["recall"] * 100).round(1).astype(str) + "%"
-                st.table(atk_df)
+                st.dataframe(atk_df, use_container_width=True)
 
     # ---------------- TAB 3: Global Interpretability ----------------
     with tab_global_xai:
         st.subheader("Global Feature Attribution & Behavioral Drivers")
         st.markdown(
             """
-            In financial network defense, understanding **global feature importance** confirms whether 
+            In enterprise network defense, understanding **global feature importance** confirms whether 
             the model learned meaningful behavioral indicators (e.g. byte/packet density, flag anomalies, rate spikes)
             rather than memorizing static IP addresses or noisy ephemeral ports.
             """
