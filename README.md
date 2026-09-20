@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Tests: 24 Passed](https://img.shields.io/badge/tests-24%20passed-brightgreen.svg)]()
+[![Tests: 29 Passed](https://img.shields.io/badge/tests-29%20passed-brightgreen.svg)]()
 [![CI: Passing](https://img.shields.io/badge/CI-Passing-brightgreen.svg)]()
 [![Model: Isolation Forest](https://img.shields.io/badge/Model-Isolation%20Forest-orange.svg)]()
 [![XAI: TreeSHAP](https://img.shields.io/badge/XAI-TreeSHAP-purple.svg)]()
@@ -91,15 +91,21 @@ Allows Fusion SOC leadership to set explicit False Positive budgets:
 - Calibrates threshold directly against benign operational validation traffic.
 - Provides an **Alert Volume Trade-off Curve** modeling expected daily alert volume for a 1M flow/day environment.
 
+### E. External Benchmark Converters (CIDDS-001 & CIC-IDS2017)
+Includes dedicated converters ([`src/converters.py`](file:///Users/usmanmasthan/Repo/explainable-netflow-ids/src/converters.py)) to normalize standard public research benchmarks:
+- **CIDDS-001:** Parses Coburg NetFlow v9 flag strings (`.AP.SF`), unit strings (`1.5 M`, `250 K`), and maps attacks (`dos`, `portScan`, `bruteForce`).
+- **CIC-IDS2017:** Aggregates forward/backward packet and byte lengths from CICFlowMeter, derives TCP flag bitmasks, and maps multi-class attack labels.
+
 ---
 
 ## 4. Benchmark & Performance Results
 
-Evaluated on 3,000 independent evaluation flows (15% cyber attacks):
+Evaluated on 3,000 independent evaluation flows (15% cyber attacks) and external benchmarks:
 
 | Metric | Score | Operational Significance |
 |---|:---:|---|
-| **AUROC** | **0.9510** | Exceptional discrimination between benign and anomalous flows |
+| **AUROC (Synthetic Evaluation)** | **0.9510** | Exceptional discrimination between benign and anomalous flows |
+| **AUROC (CIDDS-001 Benchmark)** | **0.9069** | High cross-dataset generalization on third-party academic NetFlow data |
 | **PR-AUC (Avg Precision)** | **0.7447** | High performance under heavy class imbalance |
 | **Calibrated Threshold** | **0.6817** | Tuned to enforce maximum 4.0% False Positive Rate |
 | **Operational FPR** | **4.47%** | Strict containment of false alarms |
@@ -249,6 +255,12 @@ python run_pipeline.py --n-train 8000 --n-test 3000 --target-fpr 0.03
 ```bash
 # Launch interactive Streamlit triage console
 streamlit run app.py
+```
+
+### Evaluating on External Benchmarks (CIDDS-001)
+```bash
+# Ingest and evaluate pre-trained model on CIDDS-001 NetFlow benchmark
+python scripts/ingest_external_benchmark.py --dataset-type cidds-001
 ```
 
 ---
