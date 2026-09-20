@@ -10,8 +10,20 @@ jobs:
     name: Trigger Umbrella Repo Submodule Sync
     runs-on: ubuntu-latest
     steps:
+      - name: Check if UMBRELLA_SYNC_TOKEN is configured
+        id: check_token
+        run: |
+          if [ -n "${{ secrets.UMBRELLA_SYNC_TOKEN }}" ]; then
+            echo "has_token=true" >> $GITHUB_OUTPUT
+          else
+            echo "has_token=false" >> $GITHUB_OUTPUT
+            echo "::notice ::UMBRELLA_SYNC_TOKEN secret is not yet configured in repository settings. Umbrella repo will synchronize automatically via its scheduled hourly workflow."
+          fi
+
       - name: Dispatch Update Event to Umbrella Repo
+        if: steps.check_token.outputs.has_token == 'true'
         uses: peter-evans/repository-dispatch@v3
+        continue-on-error: true
         with:
           token: ${{ secrets.UMBRELLA_SYNC_TOKEN }}
           repository: usman-masthan/enterprise-security-fusion-platform
