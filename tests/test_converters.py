@@ -6,7 +6,12 @@ import pytest
 import pandas as pd
 from pathlib import Path
 from src.config import RAW_FLOW_COLUMNS
-from src.converters import CIDDS001Converter, CICIDS2017Converter, create_sample_cidds_csv
+from src.converters import (
+    CIDDS001Converter,
+    CICIDS2017Converter,
+    create_sample_cidds_csv,
+    create_sample_cicids_csv,
+)
 from src.ingestion import NetFlowIngestion
 from src.features import NetFlowPreprocessor
 
@@ -103,3 +108,18 @@ def test_converted_data_preprocessor_pipeline(tmp_path: Path):
     X = preprocessor.fit_transform(clean)
     assert X.shape == (30, len(preprocessor.feature_names))
     assert not X.isna().any().any()
+
+
+def test_cicids_sample_and_pipeline(tmp_path: Path):
+    sample_file = tmp_path / "cicids_sample.csv"
+    create_sample_cicids_csv(sample_file, n_samples=30)
+    raw_df = pd.read_csv(sample_file)
+
+    converted = CICIDS2017Converter.convert_dataframe(raw_df)
+    clean = NetFlowIngestion.validate_and_clean(converted)
+
+    preprocessor = NetFlowPreprocessor()
+    X = preprocessor.fit_transform(clean)
+    assert X.shape == (30, len(preprocessor.feature_names))
+    assert not X.isna().any().any()
+    assert clean["is_anomaly"].sum() > 0

@@ -1,27 +1,27 @@
 {
-  "auroc": 0.9069,
-  "pr_auc": 0.6963,
-  "threshold": 0.6817,
-  "precision": 0.6087,
-  "recall": 0.4242,
-  "f1_score": 0.5,
-  "false_positive_rate": 0.06733,
+  "auroc": 0.8755,
+  "pr_auc": 0.6436,
+  "threshold": 0.7594,
+  "precision": 0.64,
+  "recall": 0.3232,
+  "f1_score": 0.4295,
+  "false_positive_rate": 0.04489,
   "confusion_matrix": {
-    "true_negatives": 374,
-    "false_positives": 27,
-    "false_negatives": 57,
-    "true_positives": 42
+    "true_negatives": 383,
+    "false_positives": 18,
+    "false_negatives": 67,
+    "true_positives": 32
   },
   "operational_impact": {
     "assumed_daily_flows": 1000000,
-    "projected_daily_alerts": 138000,
-    "projected_daily_false_alarms": 67331
+    "projected_daily_alerts": 100000,
+    "projected_daily_false_alarms": 44887
   },
   "per_attack_recall": {
     "port_scan": {
       "count": 37,
-      "detected": 5,
-      "recall": 0.1351
+      "detected": 3,
+      "recall": 0.0811
     },
     "syn_flood": {
       "count": 27,
@@ -30,8 +30,8 @@
     },
     "ssh_brute_force": {
       "count": 35,
-      "detected": 10,
-      "recall": 0.2857
+      "detected": 2,
+      "recall": 0.0571
     }
   }
 }

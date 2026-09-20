@@ -216,15 +216,15 @@ class CICIDS2017Converter(ExternalDatasetConverter):
         # Packets (Fwd + Bwd)
         fwd_p = col_clean.get("total fwd packets", None)
         bwd_p = col_clean.get("total backward packets", None)
-        fwd_pkts = pd.to_numeric(df[fwd_p], errors="coerce").fillna(0) if fwd_p else 0
-        bwd_pkts = pd.to_numeric(df[bwd_p], errors="coerce").fillna(0) if bwd_p else 0
+        fwd_pkts = pd.to_numeric(df[fwd_p], errors="coerce").fillna(0) if fwd_p else pd.Series(0, index=df.index)
+        bwd_pkts = pd.to_numeric(df[bwd_p], errors="coerce").fillna(0) if bwd_p else pd.Series(0, index=df.index)
         converted["packet_count"] = np.maximum((fwd_pkts + bwd_pkts).astype(int), 1)
 
         # Bytes (Fwd + Bwd length)
         fwd_b = col_clean.get("total length of fwd packets", None)
         bwd_b = col_clean.get("total length of bwd packets", None)
-        fwd_bytes = pd.to_numeric(df[fwd_b], errors="coerce").fillna(0) if fwd_b else 0
-        bwd_bytes = pd.to_numeric(df[bwd_b], errors="coerce").fillna(0) if bwd_b else 0
+        fwd_bytes = pd.to_numeric(df[fwd_b], errors="coerce").fillna(0) if fwd_b else pd.Series(0, index=df.index)
+        bwd_bytes = pd.to_numeric(df[bwd_b], errors="coerce").fillna(0) if bwd_b else pd.Series(0, index=df.index)
         converted["byte_count"] = np.maximum((fwd_bytes + bwd_bytes).astype(int), 0)
 
         # Reconstruct TCP flags string from individual flag counts
@@ -303,6 +303,77 @@ def create_sample_cidds_csv(output_path: Union[str, Path], n_samples: int = 200)
             "class": "attacker" if is_attack else "normal",
             "attackType": attack_type,
             "attackID": "---" if not is_attack else f"ATK-{rng.integers(100, 999)}",
+        })
+
+    df = pd.DataFrame(rows)
+    path = Path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    df.to_csv(path, index=False)
+    return path
+
+
+def create_sample_cicids_csv(output_path: Union[str, Path], n_samples: int = 200) -> Path:
+    """
+    Generates a realistic sample CIC-IDS2017 raw formatted CSV file for testing
+    and offline evaluation without needing multi-gigabyte PCAP conversions.
+    """
+    rng = np.random.default_rng(42)
+    rows = []
+    for _ in range(n_samples):
+        is_attack = rng.random() < 0.20
+        if is_attack:
+            attack_label = rng.choice(["PortScan", "DDoS", "DoS Hulk", "SSH-Patator"])
+            if attack_label == "PortScan":
+                dur_micros = int(rng.uniform(1000, 50000))
+                fwd_p, bwd_p = int(rng.integers(1, 3)), 0
+                fwd_b, bwd_b = fwd_p * 44, 0
+                syn_flag, ack_flag = 1, 0
+                dst_port = int(rng.choice([22, 80, 443, 8080]))
+            elif "DoS" in attack_label or attack_label == "DDoS":
+                dur_micros = int(rng.uniform(100000, 2000000))
+                fwd_p, bwd_p = int(rng.integers(500, 5000)), 0
+                fwd_b, bwd_b = fwd_p * 60, 0
+                syn_flag, ack_flag = 1, 0
+                dst_port = 80
+            else:  # SSH-Patator
+                dur_micros = int(rng.uniform(200000, 1500000))
+                fwd_p, bwd_p = int(rng.integers(10, 30)), int(rng.integers(10, 30))
+                fwd_b, bwd_b = fwd_p * 80, bwd_p * 120
+                syn_flag, ack_flag = 1, 1
+                dst_port = 22
+            src_ip = f"172.16.0.{rng.integers(1, 255)}"
+            proto = 6
+        else:
+            attack_label = "BENIGN"
+            dur_micros = int(rng.uniform(50000, 15000000))
+            fwd_p = int(rng.integers(5, 50))
+            bwd_p = int(rng.integers(5, 50))
+            fwd_b = int(fwd_p * rng.uniform(100, 600))
+            bwd_b = int(bwd_p * rng.uniform(200, 1200))
+            syn_flag, ack_flag = 1, 1
+            dst_port = int(rng.choice([80, 443, 53, 8080]))
+            src_ip = f"192.168.10.{rng.integers(1, 50)}"
+            proto = 17 if dst_port == 53 else 6
+
+        rows.append({
+            "Timestamp": "2026-09-20 08:30:00",
+            "Flow Duration": dur_micros,
+            "Source IP": src_ip,
+            "Source Port": int(rng.integers(49152, 65535)),
+            "Destination IP": f"192.168.1.{rng.integers(1, 10)}",
+            "Destination Port": dst_port,
+            "Protocol": proto,
+            "Total Fwd Packets": fwd_p,
+            "Total Backward Packets": bwd_p,
+            "Total Length of Fwd Packets": fwd_b,
+            "Total Length of Bwd Packets": bwd_b,
+            "FIN Flag Count": 1 if not is_attack else 0,
+            "SYN Flag Count": syn_flag,
+            "RST Flag Count": 0,
+            "PSH Flag Count": 0,
+            "ACK Flag Count": ack_flag,
+            "URG Flag Count": 0,
+            "Label": attack_label,
         })
 
     df = pd.DataFrame(rows)

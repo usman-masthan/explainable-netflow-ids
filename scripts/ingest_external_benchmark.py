@@ -15,7 +15,7 @@ import json
 import pandas as pd
 
 from src.config import DATA_DIR, REPORTS_DIR, ModelConfig
-from src.converters import CIDDS001Converter, CICIDS2017Converter, create_sample_cidds_csv
+from src.converters import CIDDS001Converter, CICIDS2017Converter, create_sample_cidds_csv, create_sample_cicids_csv
 from src.ingestion import NetFlowIngestion
 from src.features import NetFlowPreprocessor
 from src.model import NetFlowAnomalyDetector
@@ -41,7 +41,7 @@ def parse_args():
     parser.add_argument(
         "--output-file",
         type=str,
-        default=str(DATA_DIR / "cidds001_converted.csv"),
+        default=None,
         help="Output path for standard converted NetFlow CSV.",
     )
     return parser.parse_args()
@@ -54,6 +54,13 @@ def main():
     print(" Generalization Evaluation on Academic NetFlow Datasets")
     print("=" * 78)
 
+    # Resolve output path
+    if args.output_file:
+        out_path = Path(args.output_file)
+    else:
+        out_filename = "cidds001_converted.csv" if args.dataset_type == "cidds-001" else "cicids2017_converted.csv"
+        out_path = DATA_DIR / out_filename
+
     # 1. Acquire or generate raw benchmark data
     if args.input_file and Path(args.input_file).exists():
         raw_path = Path(args.input_file)
@@ -62,7 +69,10 @@ def main():
     else:
         sample_raw_path = DATA_DIR / f"{args.dataset_type}_raw_sample.csv"
         print(f"\n[1/4] Generating authentic {args.dataset_type.upper()} raw sample at: {sample_raw_path}")
-        create_sample_cidds_csv(sample_raw_path, n_samples=500)
+        if args.dataset_type == "cidds-001":
+            create_sample_cidds_csv(sample_raw_path, n_samples=500)
+        else:
+            create_sample_cicids_csv(sample_raw_path, n_samples=500)
         raw_df = pd.read_csv(sample_raw_path)
 
     print(f"      - Loaded {len(raw_df):,} raw {args.dataset_type.upper()} records.")
@@ -76,7 +86,6 @@ def main():
 
     # Clean & validate
     clean_df = NetFlowIngestion.validate_and_clean(converted_df)
-    out_path = Path(args.output_file)
     NetFlowIngestion.save_to_csv(clean_df, out_path)
     print(f"      - Converted & validated flows: {len(clean_df):,}")
     print(f"      - Attack ratio in benchmark: {clean_df['is_anomaly'].mean():.1%}")
