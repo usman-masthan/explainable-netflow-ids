@@ -2,7 +2,7 @@
 
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-[![Tests: 29 Passed](https://img.shields.io/badge/tests-29%20passed-brightgreen.svg)]()
+[![Tests: 30 Passed](https://img.shields.io/badge/tests-30%20passed-brightgreen.svg)]()
 [![CI: Passing](https://img.shields.io/badge/CI-Passing-brightgreen.svg)]()
 [![Model: Isolation Forest](https://img.shields.io/badge/Model-Isolation%20Forest-orange.svg)]()
 [![XAI: TreeSHAP](https://img.shields.io/badge/XAI-TreeSHAP-purple.svg)]()
@@ -186,7 +186,10 @@ The system generates structured JSON alerts ready for direct ingestion into **Sp
 
 ```
 explainable-netflow-ids/
-├── data/                            # NetFlow CSV datasets (baseline & evaluation)
+├── .github/
+│   └── workflows/
+│       └── ci.yml                   # Automated Pytest CI/CD workflow
+├── data/                            # NetFlow CSV datasets (baseline, test, external benchmarks)
 ├── notebooks/
 │   └── netflow_ids_walkthrough.ipynb # Story-driven ML walkthrough with commentary
 ├── reports/
@@ -194,6 +197,9 @@ explainable-netflow-ids/
 │   ├── model_checkpoint.joblib      # Serialized Isolation Forest detector
 │   ├── sample_alerts.json           # Splunk CIM compliant alert batch
 │   └── figures/                     # High-resolution analytical charts
+├── scripts/
+│   ├── build_notebook.py            # Automated notebook generation utility
+│   └── ingest_external_benchmark.py # CLI converter & evaluator for CIDDS-001 / CIC-IDS2017
 ├── src/
 │   ├── __init__.py
 │   ├── config.py                    # Schema definitions, hyperparameters & paths
@@ -203,8 +209,9 @@ explainable-netflow-ids/
 │   ├── model.py                     # Isolation Forest model & FPR threshold calibrator
 │   ├── explainability.py            # TreeSHAP explainer & narrative generator
 │   ├── evaluation.py                # AUROC, PR-AUC, FPR & trade-off curves
-│   └── triage_enricher.py           # Splunk CIM builder & MITRE ATT&CK mapping
-├── tests/                           # Comprehensive Pytest suite (24 tests)
+│   ├── triage_enricher.py           # Splunk CIM builder & MITRE ATT&CK mapping
+│   └── converters.py                # CIDDS-001 & CIC-IDS2017 benchmark dataset converters
+├── tests/                           # Comprehensive Pytest suite (30 tests)
 │   ├── test_data_generator.py
 │   ├── test_ingestion.py
 │   ├── test_features.py
@@ -212,7 +219,9 @@ explainable-netflow-ids/
 │   ├── test_explainability.py
 │   ├── test_evaluation.py
 │   ├── test_triage_enricher.py
+│   ├── test_converters.py
 │   └── test_pipeline.py
+├── app.py                           # Executive Streamlit Cyber Fusion Dashboard
 ├── run_pipeline.py                  # CLI entrypoint for complete pipeline
 ├── requirements.txt                 # Pinned dependencies
 └── README.md
