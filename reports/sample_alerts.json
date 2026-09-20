@@ -1,0 +1,3002 @@
+[
+  {
+    "alert_id": "ALT-20260920-76339aa3",
+    "timestamp": "2026-09-20T08:09:55.624388",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-143023-ebeafd39",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.7.47",
+      "src_ip": "10.100.7.47",
+      "src_port": 54567,
+      "dest": "91.119.162.200",
+      "dest_ip": "91.119.162.200",
+      "dest_port": 4444,
+      "transport": "tcp",
+      "duration": 0.12724,
+      "packets": 6,
+      "bytes": 384,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7543,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0138,
+          "scaled_value": -0.6108,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.846,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7375,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6433,
+          "scaled_value": -0.9081,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.754, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0138); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.846); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7375) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6433)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.7.47 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-9037caed",
+    "timestamp": "2026-09-20T08:08:00.864820",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-396062-7e39141e",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.6.18",
+      "src_ip": "10.100.6.18",
+      "src_port": 54045,
+      "dest": "10.200.3.14",
+      "dest_ip": "10.200.3.14",
+      "dest_port": 123,
+      "transport": "udp",
+      "duration": 0.00104,
+      "packets": 2,
+      "bytes": 96,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.8218,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.908,
+          "scaled_value": 18.478,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8649,
+          "scaled_value": 2.1404,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.7526,
+          "scaled_value": 2.2171,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.3752,
+          "scaled_value": -1.1864,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.822, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.908) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.8649); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.7526); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.3752)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.6.18 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-7d5fd5ac",
+    "timestamp": "2026-09-20T08:48:27.238082",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-986125-b8190011",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.9.18",
+      "src_ip": "10.100.9.18",
+      "src_port": 58653,
+      "dest": "91.236.21.101",
+      "dest_ip": "91.236.21.101",
+      "dest_port": 9001,
+      "transport": "tcp",
+      "duration": 0.04991,
+      "packets": 6,
+      "bytes": 384,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7939,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0474,
+          "scaled_value": -0.6108,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8784,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7216,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6215,
+          "scaled_value": -0.9081,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.794, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0474); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8784); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7216) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6215)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.9.18 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-05ed9e7a",
+    "timestamp": "2026-09-20T08:13:13.485318",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-481224-f7449df7",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.5.169.28",
+      "src_ip": "193.5.169.28",
+      "src_port": 53111,
+      "dest": "10.200.3.21",
+      "dest_ip": "10.200.3.21",
+      "dest_port": 445,
+      "transport": "tcp",
+      "duration": 0.0003,
+      "packets": 2,
+      "bytes": 88,
+      "tcp_flags": "RST"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.9434,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.8893,
+          "scaled_value": 65.2172,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.1039,
+          "scaled_value": 8.2264,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7953,
+          "scaled_value": 2.8641,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4396,
+          "scaled_value": -1.2038,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.943, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.8893) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.1039); `log_pps` deviated strongly from baseline distribution (SHAP: +0.7953); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4396)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 193.5.169.28 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-43dd0094",
+    "timestamp": "2026-09-20T08:27:47.914613",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-954185-89f42c56",
+    "severity": "MEDIUM",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "185.237.188.205",
+      "src_ip": "185.237.188.205",
+      "src_port": 59194,
+      "dest": "10.200.2.24",
+      "dest_ip": "10.200.2.24",
+      "dest_port": 3389,
+      "transport": "tcp",
+      "duration": 0.00216,
+      "packets": 2,
+      "bytes": 88,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.8362,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.352,
+          "scaled_value": 8.653,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.6916,
+          "scaled_value": 1.7152,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.649,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4561,
+          "scaled_value": -1.2038,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.836, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.352) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.6916); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.649); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4561)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 185.237.188.205 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-53c29e55",
+    "timestamp": "2026-09-20T08:04:44.776861",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-662279-33028af4",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.7.46",
+      "src_ip": "10.100.7.46",
+      "src_port": 60504,
+      "dest": "185.182.22.188",
+      "dest_ip": "185.182.22.188",
+      "dest_port": 4444,
+      "transport": "tcp",
+      "duration": 0.11575,
+      "packets": 4,
+      "bytes": 256,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7615,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.9882,
+          "scaled_value": -0.7153,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8035,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.762,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.7045,
+          "scaled_value": -1.3621,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.762, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +0.9882); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8035); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.762) significantly exceeds baseline; `log_bps` deviated strongly from baseline distribution (SHAP: +0.7045)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.7.46 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-08d94216",
+    "timestamp": "2026-09-20T08:25:22.403709",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-545644-1cb42c38",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.200.1.28",
+      "src_ip": "10.200.1.28",
+      "src_port": 62978,
+      "dest": "10.200.3.10",
+      "dest_ip": "10.200.3.10",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 1.67674,
+      "packets": 219,
+      "bytes": 249730,
+      "tcp_flags": "SYN,ACK,PSH"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7333,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.8712,
+          "scaled_value": 3.91,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.77,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.5894,
+          "scaled_value": 0.4603,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.4978,
+          "scaled_value": 0.7082,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.733, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.8712); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.77); `log_packets` deviated strongly from baseline distribution (SHAP: +0.5894); Payload density `bytes_per_packet` (1140.3 B/pkt, SHAP: +0.4978) significantly exceeds baseline."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.200.1.28 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-ede8d9d9",
+    "timestamp": "2026-09-20T08:09:53.044099",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-867646-1262198a",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "185.246.43.152",
+      "src_ip": "185.246.43.152",
+      "src_port": 53317,
+      "dest": "10.200.1.15",
+      "dest_ip": "10.200.1.15",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 1.1495,
+      "packets": 6768,
+      "bytes": 365472,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.9783,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.9062,
+          "scaled_value": 57.5427,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.9224,
+          "scaled_value": 8.962,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8328,
+          "scaled_value": 2.7918,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6589,
+          "scaled_value": 1.5248,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.978, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.9062) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.9224); `log_pps` deviated strongly from baseline distribution (SHAP: +0.8328); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6589)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 185.246.43.152 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-eeaa9d57",
+    "timestamp": "2026-09-20T08:14:00.024400",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-728759-bd5ba1c3",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "45.36.191.107",
+      "src_ip": "45.36.191.107",
+      "src_port": 52778,
+      "dest": "10.200.2.28",
+      "dest_ip": "10.200.2.28",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.98649,
+      "packets": 21142,
+      "bytes": 1141668,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6688,
+          "scaled_value": 210.6972,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6387,
+          "scaled_value": 34.0531,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7805,
+          "scaled_value": 3.544,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.6213,
+          "scaled_value": 2.6905,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.6688) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6387); `log_pps` deviated strongly from baseline distribution (SHAP: +0.7805); `log_bps` deviated strongly from baseline distribution (SHAP: +0.6213)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 45.36.191.107 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-86b3c71f",
+    "timestamp": "2026-09-20T08:57:46.290128",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-774758-d4ee5bd0",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.5.20",
+      "src_ip": "10.100.5.20",
+      "src_port": 55347,
+      "dest": "185.162.214.27",
+      "dest_ip": "185.162.214.27",
+      "dest_port": 9001,
+      "transport": "tcp",
+      "duration": 0.10117,
+      "packets": 4,
+      "bytes": 256,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7682,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0039,
+          "scaled_value": -0.7153,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8104,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7609,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.707,
+          "scaled_value": -0.9897,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.768, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0039); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8104); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7609) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.707)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.5.20 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-3af18e9c",
+    "timestamp": "2026-09-20T08:45:18.371006",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-112113-a8ebedaa",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.2.37",
+      "src_ip": "10.100.2.37",
+      "src_port": 55787,
+      "dest": "151.193.178.91",
+      "dest_ip": "151.193.178.91",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05,
+      "packets": 61,
+      "bytes": 48985,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7492,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.7996,
+          "scaled_value": 28.744,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6354,
+          "scaled_value": 11.5505,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.9492,
+          "scaled_value": 1.8756,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.7535,
+          "scaled_value": 2.5826,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.749, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.7996); Transmission rate `packets_per_second` (SHAP: +1.6354) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.9492); `log_bps` deviated strongly from baseline distribution (SHAP: +0.7535)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.2.37 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-3ac3a958",
+    "timestamp": "2026-09-20T08:43:01.055020",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-976841-26e1f0c8",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.2.26",
+      "src_ip": "10.100.2.26",
+      "src_port": 54123,
+      "dest": "10.200.1.28",
+      "dest_ip": "10.200.1.28",
+      "dest_port": 0,
+      "transport": "icmp",
+      "duration": 0.00671,
+      "packets": 2,
+      "bytes": 128,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.6826,
+      "top_driving_features": [
+        {
+          "feature": "proto_ICMP",
+          "shap_contribution": 1.2127,
+          "scaled_value": 1.0,
+          "raw_value": null
+        },
+        {
+          "feature": "proto_UDP",
+          "shap_contribution": 0.7043,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4122,
+          "scaled_value": -1.1289,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.3892,
+          "scaled_value": 2.4666,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.683, threshold: 0.682). Primary operational drivers: `proto_ICMP` deviated strongly from baseline distribution (SHAP: +1.2127); `proto_UDP` deviated strongly from baseline distribution (SHAP: +0.7043); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4122); Transmission rate `packets_per_second` (SHAP: +0.3892) indicates volumetric burst."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.2.26 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-2ea62f05",
+    "timestamp": "2026-09-20T08:24:36.942219",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-360887-fe77df42",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "91.119.162.200",
+      "src_ip": "91.119.162.200",
+      "src_port": 58133,
+      "dest": "10.200.2.18",
+      "dest_ip": "10.200.2.18",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.84345,
+      "packets": 11905,
+      "bytes": 642870,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.756,
+          "scaled_value": 138.603,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.2063,
+          "scaled_value": 22.242,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8174,
+          "scaled_value": 3.3008,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6114,
+          "scaled_value": 1.7002,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.756) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.2063); `log_pps` deviated strongly from baseline distribution (SHAP: +0.8174); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6114)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 91.119.162.200 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-6399cd5b",
+    "timestamp": "2026-09-20T08:03:47.662678",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-171671-ab2de79c",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.4.45.59",
+      "src_ip": "193.4.45.59",
+      "src_port": 64175,
+      "dest": "10.200.2.10",
+      "dest_ip": "10.200.2.10",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 1.08282,
+      "packets": 15121,
+      "bytes": 816534,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.7562,
+          "scaled_value": 137.1232,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.2201,
+          "scaled_value": 21.9996,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.819,
+          "scaled_value": 3.2946,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6108,
+          "scaled_value": 1.7745,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.7562) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.2201); `log_pps` deviated strongly from baseline distribution (SHAP: +0.819); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6108)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 193.4.45.59 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-3664f8c9",
+    "timestamp": "2026-09-20T08:16:21.542466",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-508978-270effc6",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "91.73.244.235",
+      "src_ip": "91.73.244.235",
+      "src_port": 55339,
+      "dest": "10.200.3.11",
+      "dest_ip": "10.200.3.11",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.31701,
+      "packets": 4265,
+      "bytes": 230310,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.7515,
+          "scaled_value": 132.0919,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.2044,
+          "scaled_value": 21.1753,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8267,
+          "scaled_value": 3.2729,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6407,
+          "scaled_value": 1.3814,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.7515) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.2044); `log_pps` deviated strongly from baseline distribution (SHAP: +0.8267); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6407)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 91.73.244.235 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-9f59ce50",
+    "timestamp": "2026-09-20T08:01:12.454330",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-519829-bf4a96e2",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.200.2.19",
+      "src_ip": "10.200.2.19",
+      "src_port": 53251,
+      "dest": "10.200.3.20",
+      "dest_ip": "10.200.3.20",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 0.65105,
+      "packets": 138,
+      "bytes": 111614,
+      "tcp_flags": "SYN,ACK,PSH"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7241,
+      "top_driving_features": [
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.9352,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.909,
+          "scaled_value": 4.5826,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.6722,
+          "scaled_value": 1.6182,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.4444,
+          "scaled_value": 0.3176,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.724, threshold: 0.682). Primary operational drivers: Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.9352); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.909); Transmission rate `packets_per_second` (SHAP: +0.6722) indicates volumetric burst; `log_packets` deviated strongly from baseline distribution (SHAP: +0.4444)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.200.2.19 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-c1daea34",
+    "timestamp": "2026-09-20T08:13:58.896641",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-667847-83127dd1",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.1.45",
+      "src_ip": "10.100.1.45",
+      "src_port": 56532,
+      "dest": "157.58.144.171",
+      "dest_ip": "157.58.144.171",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05343,
+      "packets": 54,
+      "bytes": 48692,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7128,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.7417,
+          "scaled_value": 26.7,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.4235,
+          "scaled_value": 9.4879,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.7986,
+          "scaled_value": 2.5358,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7859,
+          "scaled_value": 1.7661,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.713, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.7417); Transmission rate `packets_per_second` (SHAP: +1.4235) indicates volumetric burst; `log_bps` deviated strongly from baseline distribution (SHAP: +0.7986); `log_pps` deviated strongly from baseline distribution (SHAP: +0.7859)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.1.45 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-049a0b82",
+    "timestamp": "2026-09-20T08:46:03.761071",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-319395-2a75ff18",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.31.76.129",
+      "src_ip": "193.31.76.129",
+      "src_port": 57380,
+      "dest": "10.200.1.25",
+      "dest_ip": "10.200.1.25",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 1.08467,
+      "packets": 10154,
+      "bytes": 548316,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.9895,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.7725,
+          "scaled_value": 91.7684,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.0797,
+          "scaled_value": 14.5692,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8485,
+          "scaled_value": 3.0617,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6328,
+          "scaled_value": 1.6508,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.990, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.7725) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.0797); `log_pps` deviated strongly from baseline distribution (SHAP: +0.8485); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6328)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 193.31.76.129 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-9e4f27fc",
+    "timestamp": "2026-09-20T08:06:11.303210",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-917032-82a61ce9",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.34.111.32",
+      "src_ip": "193.34.111.32",
+      "src_port": 59480,
+      "dest": "10.200.1.16",
+      "dest_ip": "10.200.1.16",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.30921,
+      "packets": 11579,
+      "bytes": 625266,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6603,
+          "scaled_value": 59.9057,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6602,
+          "scaled_value": 368.4998,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7783,
+          "scaled_value": 3.8689,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6477,
+          "scaled_value": 1.6916,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6603); Transmission rate `packets_per_second` (SHAP: +1.6602) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.7783); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6477)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 193.34.111.32 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-352c08e5",
+    "timestamp": "2026-09-20T08:31:20.687896",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-149589-8da19fbb",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.9.41",
+      "src_ip": "10.100.9.41",
+      "src_port": 65438,
+      "dest": "10.200.2.16",
+      "dest_ip": "10.200.2.16",
+      "dest_port": 123,
+      "transport": "udp",
+      "duration": 0.00157,
+      "packets": 2,
+      "bytes": 96,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7288,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.7839,
+          "scaled_value": 12.0815,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.842,
+          "scaled_value": 1.9008,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.4137,
+          "scaled_value": 1.2856,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.3304,
+          "scaled_value": -1.1864,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.729, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.7839) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.842); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.4137); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.3304)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.9.41 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-79c822ce",
+    "timestamp": "2026-09-20T08:27:02.307228",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-813837-fbe6aeab",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "185.246.43.152",
+      "src_ip": "185.246.43.152",
+      "src_port": 62512,
+      "dest": "10.200.2.28",
+      "dest_ip": "10.200.2.28",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.75303,
+      "packets": 15195,
+      "bytes": 820530,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6727,
+          "scaled_value": 198.3506,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6255,
+          "scaled_value": 32.0304,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7797,
+          "scaled_value": 3.5089,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6221,
+          "scaled_value": 1.776,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.6727) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6255); `log_pps` deviated strongly from baseline distribution (SHAP: +0.7797); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6221)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 185.246.43.152 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-8074fc65",
+    "timestamp": "2026-09-20T08:52:17.067129",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-116667-1da040f4",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.7.20",
+      "src_ip": "10.100.7.20",
+      "src_port": 49297,
+      "dest": "13.164.103.209",
+      "dest_ip": "13.164.103.209",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05,
+      "packets": 57,
+      "bytes": 46436,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7024,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6865,
+          "scaled_value": 27.2201,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.4793,
+          "scaled_value": 10.7623,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8586,
+          "scaled_value": 1.8362,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.8037,
+          "scaled_value": 2.548,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.702, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6865); Transmission rate `packets_per_second` (SHAP: +1.4793) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.8586); `log_bps` deviated strongly from baseline distribution (SHAP: +0.8037)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.7.20 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-eddbba32",
+    "timestamp": "2026-09-20T08:20:25.579850",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-697256-eede72ce",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.5.12",
+      "src_ip": "10.100.5.12",
+      "src_port": 63779,
+      "dest": "10.200.1.12",
+      "dest_ip": "10.200.1.12",
+      "dest_port": 0,
+      "transport": "icmp",
+      "duration": 0.00447,
+      "packets": 2,
+      "bytes": 128,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.6966,
+      "top_driving_features": [
+        {
+          "feature": "proto_ICMP",
+          "shap_contribution": 1.0744,
+          "scaled_value": 1.0,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.5947,
+          "scaled_value": 3.9383,
+          "raw_value": null
+        },
+        {
+          "feature": "proto_UDP",
+          "shap_contribution": 0.5208,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.3795,
+          "scaled_value": -1.1289,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.697, threshold: 0.682). Primary operational drivers: `proto_ICMP` deviated strongly from baseline distribution (SHAP: +1.0744); Transmission rate `packets_per_second` (SHAP: +0.5947) indicates volumetric burst; `proto_UDP` deviated strongly from baseline distribution (SHAP: +0.5208); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.3795)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.5.12 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-0c19093b",
+    "timestamp": "2026-09-20T08:14:43.931342",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-603622-9b05e001",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.7.42",
+      "src_ip": "10.100.7.42",
+      "src_port": 58248,
+      "dest": "104.219.22.178",
+      "dest_ip": "104.219.22.178",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05,
+      "packets": 78,
+      "bytes": 50733,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.8468,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.9001,
+          "scaled_value": 14.9006,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.8397,
+          "scaled_value": 29.7891,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 1.0015,
+          "scaled_value": 2.0187,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.7578,
+          "scaled_value": 2.6053,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.847, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.9001) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.8397); `log_pps` deviated strongly from baseline distribution (SHAP: +1.0015); `log_bps` deviated strongly from baseline distribution (SHAP: +0.7578)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.7.42 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-76b94ffa",
+    "timestamp": "2026-09-20T08:28:24.390725",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-623087-dcfca298",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.200.1.10",
+      "src_ip": "10.200.1.10",
+      "src_port": 56225,
+      "dest": "10.200.3.20",
+      "dest_ip": "10.200.3.20",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 0.8671,
+      "packets": 177,
+      "bytes": 165629,
+      "tcp_flags": "SYN,ACK,PSH"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7277,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.9478,
+          "scaled_value": 5.1678,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.7985,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.5672,
+          "scaled_value": 1.541,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.4961,
+          "scaled_value": 0.3945,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.728, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.9478); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.7985); Transmission rate `packets_per_second` (SHAP: +0.5672) indicates volumetric burst; `log_packets` deviated strongly from baseline distribution (SHAP: +0.4961)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.200.1.10 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-ece0c9a9",
+    "timestamp": "2026-09-20T08:40:43.805239",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-786353-952b2c6a",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.5.44",
+      "src_ip": "10.100.5.44",
+      "src_port": 62860,
+      "dest": "91.51.220.205",
+      "dest_ip": "91.51.220.205",
+      "dest_port": 4444,
+      "transport": "tcp",
+      "duration": 0.09239,
+      "packets": 8,
+      "bytes": 512,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7815,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0325,
+          "scaled_value": -0.5327,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8791,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7323,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6574,
+          "scaled_value": -0.8501,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.781, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0325); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8791); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7323) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6574)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.5.44 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-7d6326a0",
+    "timestamp": "2026-09-20T08:43:41.276998",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-259159-5a5f1026",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "185.182.22.188",
+      "src_ip": "185.182.22.188",
+      "src_port": 55343,
+      "dest": "10.200.1.18",
+      "dest_ip": "10.200.1.18",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 1.14718,
+      "packets": 13849,
+      "bytes": 747846,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.7704,
+          "scaled_value": 118.4786,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.191,
+          "scaled_value": 18.9451,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8254,
+          "scaled_value": 3.2098,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6141,
+          "scaled_value": 1.7472,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.7704) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.191); `log_pps` deviated strongly from baseline distribution (SHAP: +0.8254); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6141)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 185.182.22.188 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-2809208d",
+    "timestamp": "2026-09-20T08:37:58.882800",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-808428-716094eb",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.200.3.27",
+      "src_ip": "10.200.3.27",
+      "src_port": 54484,
+      "dest": "10.200.3.10",
+      "dest_ip": "10.200.3.10",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 0.75687,
+      "packets": 213,
+      "bytes": 167307,
+      "tcp_flags": "SYN,ACK,PSH"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7948,
+      "top_driving_features": [
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.9466,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.892,
+          "scaled_value": 6.0657,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6836,
+          "scaled_value": 0.4517,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.6714,
+          "scaled_value": 2.3026,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.795, threshold: 0.682). Primary operational drivers: Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.9466); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.892); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6836); Transmission rate `packets_per_second` (SHAP: +0.6714) indicates volumetric burst."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.200.3.27 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-f3b2711e",
+    "timestamp": "2026-09-20T08:29:13.808093",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-953503-972d6373",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.34.111.32",
+      "src_ip": "193.34.111.32",
+      "src_port": 64657,
+      "dest": "10.200.1.17",
+      "dest_ip": "10.200.1.17",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.68466,
+      "packets": 24195,
+      "bytes": 1306530,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6701,
+          "scaled_value": 347.7262,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6649,
+          "scaled_value": 56.5024,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.781,
+          "scaled_value": 3.8352,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6495,
+          "scaled_value": 1.9205,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.6701) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6649); `log_pps` deviated strongly from baseline distribution (SHAP: +0.781); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6495)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 193.34.111.32 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-9e87e3ca",
+    "timestamp": "2026-09-20T08:08:01.439432",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-757508-adaeb689",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.4.15",
+      "src_ip": "10.100.4.15",
+      "src_port": 65064,
+      "dest": "20.227.57.227",
+      "dest_ip": "20.227.57.227",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05,
+      "packets": 84,
+      "bytes": 47767,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.8415,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.8179,
+          "scaled_value": 16.0829,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.7392,
+          "scaled_value": 28.0158,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.9855,
+          "scaled_value": 2.0618,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.7646,
+          "scaled_value": 2.5663,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.841, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.8179) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.7392); `log_pps` deviated strongly from baseline distribution (SHAP: +0.9855); `log_bps` deviated strongly from baseline distribution (SHAP: +0.7646)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.4.15 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-4a483f4f",
+    "timestamp": "2026-09-20T08:27:57.502004",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-855014-a559c6a5",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.1.38",
+      "src_ip": "10.100.1.38",
+      "src_port": 61614,
+      "dest": "10.200.2.53",
+      "dest_ip": "10.200.2.53",
+      "dest_port": 53,
+      "transport": "udp",
+      "duration": 0.00633,
+      "packets": 4,
+      "bytes": 360,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7073,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.1717,
+          "scaled_value": -0.7153,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.8854,
+          "scaled_value": 5.756,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.5311,
+          "scaled_value": 1.493,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.3337,
+          "scaled_value": 1.1579,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.707, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.1717); Transmission rate `packets_per_second` (SHAP: +0.8854) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.5311); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.3337)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.1.38 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-32e92c1b",
+    "timestamp": "2026-09-20T08:32:05.553223",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-690695-d7c0747e",
+    "severity": "MEDIUM",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "185.237.188.205",
+      "src_ip": "185.237.188.205",
+      "src_port": 60045,
+      "dest": "10.200.2.18",
+      "dest_ip": "10.200.2.18",
+      "dest_port": 8080,
+      "transport": "tcp",
+      "duration": 0.00314,
+      "packets": 2,
+      "bytes": 88,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7601,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.9703,
+          "scaled_value": 5.8056,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.719,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.5871,
+          "scaled_value": 1.4976,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4905,
+          "scaled_value": -1.2038,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.760, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +0.9703) indicates volumetric burst; Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.719); `log_pps` deviated strongly from baseline distribution (SHAP: +0.5871); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4905)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 185.237.188.205 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-fa15f683",
+    "timestamp": "2026-09-20T08:25:05.632638",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-714300-a2125202",
+    "severity": "MEDIUM",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.5.169.28",
+      "src_ip": "193.5.169.28",
+      "src_port": 57755,
+      "dest": "10.200.2.25",
+      "dest_ip": "10.200.2.25",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 0.0017,
+      "packets": 1,
+      "bytes": 44,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7316,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.9412,
+          "scaled_value": 5.3257,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.7198,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.5189,
+          "scaled_value": 1.4514,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4454,
+          "scaled_value": -1.3416,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.732, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +0.9412) indicates volumetric burst; Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.7198); `log_pps` deviated strongly from baseline distribution (SHAP: +0.5189); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4454)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 193.5.169.28 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-088e1779",
+    "timestamp": "2026-09-20T08:46:03.874336",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-102923-0c63cdf0",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.9.48",
+      "src_ip": "10.100.9.48",
+      "src_port": 58579,
+      "dest": "10.200.2.53",
+      "dest_ip": "10.200.2.53",
+      "dest_port": 53,
+      "transport": "udp",
+      "duration": 0.00219,
+      "packets": 2,
+      "bytes": 449,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.8457,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.1872,
+          "scaled_value": 8.528,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.1401,
+          "scaled_value": 5.5865,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7186,
+          "scaled_value": 1.7071,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.4363,
+          "scaled_value": -0.6931,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.846, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.1872) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.1401); `log_pps` deviated strongly from baseline distribution (SHAP: +0.7186); Payload density `bytes_per_packet` (224.5 B/pkt, SHAP: +0.4363) significantly exceeds baseline."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.9.48 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-d1c6cac9",
+    "timestamp": "2026-09-20T08:33:04.020783",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-545863-a8051316",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.5.12",
+      "src_ip": "10.100.5.12",
+      "src_port": 63627,
+      "dest": "45.36.191.107",
+      "dest_ip": "45.36.191.107",
+      "dest_port": 9001,
+      "transport": "tcp",
+      "duration": 0.09203,
+      "packets": 6,
+      "bytes": 384,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7635,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0139,
+          "scaled_value": -0.6108,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.861,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7294,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6409,
+          "scaled_value": -0.9081,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.763, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0139); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.861); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7294) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6409)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.5.12 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-882f5464",
+    "timestamp": "2026-09-20T08:16:07.554631",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-421746-d69000fd",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.9.43",
+      "src_ip": "10.100.9.43",
+      "src_port": 51601,
+      "dest": "10.200.1.53",
+      "dest_ip": "10.200.1.53",
+      "dest_port": 53,
+      "transport": "udp",
+      "duration": 0.00241,
+      "packets": 2,
+      "bytes": 411,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7819,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.1092,
+          "scaled_value": 7.7066,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.0535,
+          "scaled_value": 4.5557,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.591,
+          "scaled_value": 1.6515,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.3928,
+          "scaled_value": -0.7222,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.782, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.1092) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.0535); `log_pps` deviated strongly from baseline distribution (SHAP: +0.591); Payload density `bytes_per_packet` (205.5 B/pkt, SHAP: +0.3928) significantly exceeds baseline."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.9.43 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-0cc9ea11",
+    "timestamp": "2026-09-20T08:58:15.801363",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-353041-dcf9b4ed",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.2.40",
+      "src_ip": "10.100.2.40",
+      "src_port": 59103,
+      "dest": "193.31.76.129",
+      "dest_ip": "193.31.76.129",
+      "dest_port": 9001,
+      "transport": "tcp",
+      "duration": 0.10017,
+      "packets": 4,
+      "bytes": 256,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7682,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0038,
+          "scaled_value": -0.7153,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8104,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7609,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.707,
+          "scaled_value": -0.9897,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.768, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0038); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8104); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7609) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.707)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.2.40 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-ae36e4f4",
+    "timestamp": "2026-09-20T08:39:50.848585",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-611829-0763efb3",
+    "severity": "MEDIUM",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.77.34.125",
+      "src_ip": "193.77.34.125",
+      "src_port": 50275,
+      "dest": "10.200.2.20",
+      "dest_ip": "10.200.2.20",
+      "dest_port": 1433,
+      "transport": "tcp",
+      "duration": 0.00356,
+      "packets": 2,
+      "bytes": 88,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7217,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.9226,
+          "scaled_value": 5.0652,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.72,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.4928,
+          "scaled_value": 1.4246,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4378,
+          "scaled_value": -1.2038,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.722, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +0.9226) indicates volumetric burst; Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.72); `log_pps` deviated strongly from baseline distribution (SHAP: +0.4928); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4378)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 193.77.34.125 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-d46e3793",
+    "timestamp": "2026-09-20T08:54:00.940269",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-723946-791f783b",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.8.45",
+      "src_ip": "10.100.8.45",
+      "src_port": 54514,
+      "dest": "91.236.21.101",
+      "dest_ip": "91.236.21.101",
+      "dest_port": 9001,
+      "transport": "tcp",
+      "duration": 0.0586,
+      "packets": 4,
+      "bytes": 256,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7635,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0125,
+          "scaled_value": -0.7153,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8271,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7289,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6754,
+          "scaled_value": -0.9897,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.763, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0125); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8271); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7289) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6754)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.8.45 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-cc85e4c7",
+    "timestamp": "2026-09-20T08:44:26.380985",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-246405-86e8e340",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.4.20",
+      "src_ip": "10.100.4.20",
+      "src_port": 57923,
+      "dest": "193.31.76.129",
+      "dest_ip": "193.31.76.129",
+      "dest_port": 4444,
+      "transport": "tcp",
+      "duration": 0.13046,
+      "packets": 6,
+      "bytes": 384,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7543,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0222,
+          "scaled_value": -0.6108,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8462,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7438,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6429,
+          "scaled_value": -0.9081,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.754, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0222); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8462); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7438) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6429)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.4.20 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-b449d693",
+    "timestamp": "2026-09-20T08:35:39.516578",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-365871-b65bc06f",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.8.39",
+      "src_ip": "10.100.8.39",
+      "src_port": 52852,
+      "dest": "10.200.2.14",
+      "dest_ip": "10.200.2.14",
+      "dest_port": 0,
+      "transport": "icmp",
+      "duration": 0.00289,
+      "packets": 2,
+      "bytes": 128,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7695,
+      "top_driving_features": [
+        {
+          "feature": "proto_ICMP",
+          "shap_contribution": 0.9428,
+          "scaled_value": 1.0,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.7838,
+          "scaled_value": 6.3485,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.479,
+          "scaled_value": 1.5458,
+          "raw_value": null
+        },
+        {
+          "feature": "proto_UDP",
+          "shap_contribution": 0.4354,
+          "scaled_value": 0.0,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.770, threshold: 0.682). Primary operational drivers: `proto_ICMP` deviated strongly from baseline distribution (SHAP: +0.9428); Transmission rate `packets_per_second` (SHAP: +0.7838) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.479); `proto_UDP` deviated strongly from baseline distribution (SHAP: +0.4354)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.8.39 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-2e5859b5",
+    "timestamp": "2026-09-20T08:19:12.117432",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-341602-253515f5",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.2.44",
+      "src_ip": "10.100.2.44",
+      "src_port": 62667,
+      "dest": "91.73.244.235",
+      "dest_ip": "91.73.244.235",
+      "dest_port": 8443,
+      "transport": "tcp",
+      "duration": 0.10714,
+      "packets": 6,
+      "bytes": 384,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.761,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0149,
+          "scaled_value": -0.6108,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8511,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7328,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.6602,
+          "scaled_value": -0.9081,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.761, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0149); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8511); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7328) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.6602)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.2.44 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-e096a5dc",
+    "timestamp": "2026-09-20T08:57:13.910408",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-441345-a6f072d0",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "91.236.21.101",
+      "src_ip": "91.236.21.101",
+      "src_port": 62471,
+      "dest": "10.200.1.19",
+      "dest_ip": "10.200.1.19",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.1705,
+      "packets": 5652,
+      "bytes": 305208,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6633,
+          "scaled_value": 52.9686,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6472,
+          "scaled_value": 326.1562,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7838,
+          "scaled_value": 3.798,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6609,
+          "scaled_value": 1.4688,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6633); Transmission rate `packets_per_second` (SHAP: +1.6472) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.7838); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6609)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 91.236.21.101 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-a2390d83",
+    "timestamp": "2026-09-20T08:56:21.243974",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-430436-d44cde1f",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.5.169.28",
+      "src_ip": "193.5.169.28",
+      "src_port": 63468,
+      "dest": "10.200.3.25",
+      "dest_ip": "10.200.3.25",
+      "dest_port": 445,
+      "transport": "tcp",
+      "duration": 0.00118,
+      "packets": 2,
+      "bytes": 88,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.857,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 2.0126,
+          "scaled_value": 16.2299,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.8566,
+          "scaled_value": 2.0669,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.4915,
+          "scaled_value": -1.2038,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.4198,
+          "scaled_value": 1.6871,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.857, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +2.0126) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.8566); `log_bytes` deviated strongly from baseline distribution (SHAP: +0.4915); `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.4198)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Service Discovery",
+      "mitre_tactic": "Discovery"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-RECON-001: Rate-limit or block source IP, verify external perimeter exposure on scanned ports.",
+      "suggested_containment": "Block source IP 193.5.169.28 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-25f7c6b4",
+    "timestamp": "2026-09-20T08:47:04.211087",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-908373-42aa1695",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.8.10",
+      "src_ip": "10.100.8.10",
+      "src_port": 56979,
+      "dest": "10.200.3.17",
+      "dest_ip": "10.200.3.17",
+      "dest_port": 0,
+      "transport": "icmp",
+      "duration": 0.005,
+      "packets": 2,
+      "bytes": 128,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.6825,
+      "top_driving_features": [
+        {
+          "feature": "proto_ICMP",
+          "shap_contribution": 1.1046,
+          "scaled_value": 1.0,
+          "raw_value": null
+        },
+        {
+          "feature": "proto_UDP",
+          "shap_contribution": 0.554,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.5143,
+          "scaled_value": 3.471,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.407,
+          "scaled_value": -1.1289,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.682, threshold: 0.682). Primary operational drivers: `proto_ICMP` deviated strongly from baseline distribution (SHAP: +1.1046); `proto_UDP` deviated strongly from baseline distribution (SHAP: +0.554); Transmission rate `packets_per_second` (SHAP: +0.5143) indicates volumetric burst; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.407)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.8.10 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-2a622af7",
+    "timestamp": "2026-09-20T08:10:59.219667",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-968597-6571a750",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.2.11",
+      "src_ip": "10.100.2.11",
+      "src_port": 59591,
+      "dest": "151.72.62.168",
+      "dest_ip": "151.72.62.168",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.05,
+      "packets": 79,
+      "bytes": 82395,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.9073,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.9848,
+          "scaled_value": 48.7186,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.8082,
+          "scaled_value": 15.0976,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.969,
+          "scaled_value": 2.0261,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bps",
+          "shap_contribution": 0.735,
+          "scaled_value": 2.9193,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.907, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.9848); Transmission rate `packets_per_second` (SHAP: +1.8082) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.969); `log_bps` deviated strongly from baseline distribution (SHAP: +0.735)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.2.11 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-aaa2e326",
+    "timestamp": "2026-09-20T08:43:00.488770",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-162903-45ea714a",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "91.51.220.205",
+      "src_ip": "91.51.220.205",
+      "src_port": 57434,
+      "dest": "10.200.3.23",
+      "dest_ip": "10.200.3.23",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.26481,
+      "packets": 23785,
+      "bytes": 1284390,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 1.0,
+      "top_driving_features": [
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 1.6739,
+          "scaled_value": 144.4461,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.6503,
+          "scaled_value": 884.5281,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.7755,
+          "scaled_value": 4.3784,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6492,
+          "scaled_value": 1.9152,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 1.000, threshold: 0.682). Primary operational drivers: `bytes_per_second` deviated strongly from baseline distribution (SHAP: +1.6739); Transmission rate `packets_per_second` (SHAP: +1.6503) indicates volumetric burst; `log_pps` deviated strongly from baseline distribution (SHAP: +0.7755); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6492)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 91.51.220.205 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-b4fb2705",
+    "timestamp": "2026-09-20T08:11:41.014999",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-473858-90c1ced9",
+    "severity": "CRITICAL",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "193.177.195.148",
+      "src_ip": "193.177.195.148",
+      "src_port": 51046,
+      "dest": "10.200.2.11",
+      "dest_ip": "10.200.2.11",
+      "dest_port": 443,
+      "transport": "tcp",
+      "duration": 0.92544,
+      "packets": 4810,
+      "bytes": 259740,
+      "tcp_flags": "SYN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.9795,
+      "top_driving_features": [
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 1.897,
+          "scaled_value": 50.7416,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_second",
+          "shap_contribution": 0.8934,
+          "scaled_value": 7.8478,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.859,
+          "scaled_value": 2.7192,
+          "raw_value": null
+        },
+        {
+          "feature": "log_packets",
+          "shap_contribution": 0.6534,
+          "scaled_value": 1.4187,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.980, threshold: 0.682). Primary operational drivers: Transmission rate `packets_per_second` (SHAP: +1.897) indicates volumetric burst; `bytes_per_second` deviated strongly from baseline distribution (SHAP: +0.8934); `log_pps` deviated strongly from baseline distribution (SHAP: +0.859); `log_packets` deviated strongly from baseline distribution (SHAP: +0.6534)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1498.001",
+      "mitre_technique_name": "Network Denial of Service: Direct Network Flood",
+      "mitre_tactic": "Impact"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-DDOS-001: Enable SYN cookies on perimeter routers, trigger upstream scrubbing center mitigation.",
+      "suggested_containment": "Block source IP 193.177.195.148 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-6ccf1cdc",
+    "timestamp": "2026-09-20T08:12:40.976595",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-935500-58d5f3ff",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.4.40",
+      "src_ip": "10.100.4.40",
+      "src_port": 54467,
+      "dest": "10.200.1.16",
+      "dest_ip": "10.200.1.16",
+      "dest_port": 0,
+      "transport": "icmp",
+      "duration": 0.00331,
+      "packets": 2,
+      "bytes": 128,
+      "tcp_flags": "NONE"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7164,
+      "top_driving_features": [
+        {
+          "feature": "proto_ICMP",
+          "shap_contribution": 0.89,
+          "scaled_value": 1.0,
+          "raw_value": null
+        },
+        {
+          "feature": "packets_per_second",
+          "shap_contribution": 0.6764,
+          "scaled_value": 5.4833,
+          "raw_value": null
+        },
+        {
+          "feature": "proto_UDP",
+          "shap_contribution": 0.4539,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "log_pps",
+          "shap_contribution": 0.4174,
+          "scaled_value": 1.467,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.716, threshold: 0.682). Primary operational drivers: `proto_ICMP` deviated strongly from baseline distribution (SHAP: +0.89); Transmission rate `packets_per_second` (SHAP: +0.6764) indicates volumetric burst; `proto_UDP` deviated strongly from baseline distribution (SHAP: +0.4539); `log_pps` deviated strongly from baseline distribution (SHAP: +0.4174)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1046",
+      "mitre_technique_name": "Network Anomaly / Behavioral Outlier",
+      "mitre_tactic": "Initial Access / Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-ANOM-001: Inspect source endpoint network socket history; query proxy logs for destination IP reputation.",
+      "suggested_containment": "Block source IP 10.100.4.40 at perimeter firewall or isolate endpoint."
+    }
+  },
+  {
+    "alert_id": "ALT-20260920-3fecf2cf",
+    "timestamp": "2026-09-20T08:22:22.594774",
+    "vendor_product": "Explainable-NetFlow-IDS v1.0",
+    "flow_id": "FLW-483319-4927c22c",
+    "severity": "HIGH",
+    "action": "flagged_for_triage",
+    "network_traffic": {
+      "src": "10.100.6.19",
+      "src_ip": "10.100.6.19",
+      "src_port": 58661,
+      "dest": "193.34.111.32",
+      "dest_ip": "193.34.111.32",
+      "dest_port": 4444,
+      "transport": "tcp",
+      "duration": 0.08833,
+      "packets": 8,
+      "bytes": 512,
+      "tcp_flags": "SYN,ACK,PSH,FIN"
+    },
+    "anomaly_analysis": {
+      "calibrated_anomaly_score": 0.7891,
+      "top_driving_features": [
+        {
+          "feature": "log_packets",
+          "shap_contribution": 1.0275,
+          "scaled_value": -0.5327,
+          "raw_value": null
+        },
+        {
+          "feature": "dst_port_well_known",
+          "shap_contribution": 0.8813,
+          "scaled_value": 0.0,
+          "raw_value": null
+        },
+        {
+          "feature": "bytes_per_packet",
+          "shap_contribution": 0.7386,
+          "scaled_value": -0.9387,
+          "raw_value": null
+        },
+        {
+          "feature": "log_bytes",
+          "shap_contribution": 0.655,
+          "scaled_value": -0.8501,
+          "raw_value": null
+        }
+      ],
+      "soc_justification": "Flow flagged as ANOMALOUS (calibrated anomaly score: 0.789, threshold: 0.682). Primary operational drivers: `log_packets` deviated strongly from baseline distribution (SHAP: +1.0275); Destination port profile `dst_port_well_known` deviates from baseline enterprise behavior (SHAP: +0.8813); Payload density `bytes_per_packet` (64.0 B/pkt, SHAP: +0.7386) significantly exceeds baseline; `log_bytes` deviated strongly from baseline distribution (SHAP: +0.655)."
+    },
+    "fusion_threat_intel": {
+      "mitre_technique_id": "T1071.001",
+      "mitre_technique_name": "Application Layer Protocol: Web Protocols",
+      "mitre_tactic": "Command and Control"
+    },
+    "soar_remediation": {
+      "recommended_playbook": "PB-C2-004: Quarantine external IP at border firewall, pull process tree from source host, analyze EDR telemetry.",
+      "suggested_containment": "Block source IP 10.100.6.19 at perimeter firewall or isolate endpoint."
+    }
+  }
+]

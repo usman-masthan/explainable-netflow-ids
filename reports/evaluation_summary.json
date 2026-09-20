@@ -1,0 +1,47 @@
+{
+  "auroc": 0.951,
+  "pr_auc": 0.7447,
+  "threshold": 0.6817,
+  "precision": 0.671,
+  "recall": 0.5167,
+  "f1_score": 0.5838,
+  "false_positive_rate": 0.04471,
+  "confusion_matrix": {
+    "true_negatives": 1624,
+    "false_positives": 76,
+    "false_negatives": 145,
+    "true_positives": 155
+  },
+  "operational_impact": {
+    "assumed_daily_flows": 1000000,
+    "projected_daily_alerts": 115500,
+    "projected_daily_false_alarms": 44705
+  },
+  "per_attack_recall": {
+    "dns_exfiltration": {
+      "count": 60,
+      "detected": 4,
+      "recall": 0.0667
+    },
+    "c2_beacon": {
+      "count": 60,
+      "detected": 60,
+      "recall": 1.0
+    },
+    "port_scan": {
+      "count": 60,
+      "detected": 31,
+      "recall": 0.5167
+    },
+    "ssh_brute_force": {
+      "count": 60,
+      "detected": 0,
+      "recall": 0.0
+    },
+    "syn_flood": {
+      "count": 60,
+      "detected": 60,
+      "recall": 1.0
+    }
+  }
+}
