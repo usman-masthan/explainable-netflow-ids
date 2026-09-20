@@ -3,8 +3,10 @@
 [![Python](https://img.shields.io/badge/python-3.11-blue.svg)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Tests: 24 Passed](https://img.shields.io/badge/tests-24%20passed-brightgreen.svg)]()
+[![CI: Passing](https://img.shields.io/badge/CI-Passing-brightgreen.svg)]()
 [![Model: Isolation Forest](https://img.shields.io/badge/Model-Isolation%20Forest-orange.svg)]()
 [![XAI: TreeSHAP](https://img.shields.io/badge/XAI-TreeSHAP-purple.svg)]()
+[![Dashboard: Streamlit](https://img.shields.io/badge/Dashboard-Streamlit-red.svg)]()
 [![Target: LSEG SecOps](https://img.shields.io/badge/Target-LSEG%20Security%20Operations%20%26%20Fusion-darkblue.svg)]()
 
 > **Production-grade Network Anomaly Detection and Model Explainability (XAI) engineered for London Stock Exchange Group (LSEG) Security Operations & Fusion Management.**  
@@ -241,6 +243,12 @@ pytest tests/ -v
 ```bash
 # Train baseline model, generate TreeSHAP attributions, and export alerts
 python run_pipeline.py --n-train 8000 --n-test 3000 --target-fpr 0.03
+```
+
+### Launching the Interactive Fusion SOC Dashboard
+```bash
+# Launch interactive Streamlit triage console
+streamlit run app.py
 ```
 
 ---
