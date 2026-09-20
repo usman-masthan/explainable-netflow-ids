@@ -106,6 +106,7 @@ Evaluated on 3,000 independent evaluation flows (15% cyber attacks) and external
 |---|:---:|---|
 | **AUROC (Synthetic Evaluation)** | **0.9510** | Exceptional discrimination between benign and anomalous flows |
 | **AUROC (CIDDS-001 Benchmark)** | **0.9069** | High cross-dataset generalization on third-party academic NetFlow data |
+| **AUROC (CIC-IDS2017 Benchmark)** | **0.8578** | Validates generalization across multi-gigabyte PCAP-derived flow sets |
 | **PR-AUC (Avg Precision)** | **0.7447** | High performance under heavy class imbalance |
 | **Calibrated Threshold** | **0.6817** | Tuned to enforce maximum 4.0% False Positive Rate |
 | **Operational FPR** | **4.47%** | Strict containment of false alarms |
@@ -241,7 +242,7 @@ pip install -r requirements.txt
 
 ### Running Unit & Integration Tests
 ```bash
-# Run all 24 unit and pipeline integration tests
+# Run all 30 unit and pipeline integration tests
 pytest tests/ -v
 ```
 
@@ -257,10 +258,13 @@ python run_pipeline.py --n-train 8000 --n-test 3000 --target-fpr 0.03
 streamlit run app.py
 ```
 
-### Evaluating on External Benchmarks (CIDDS-001)
+### Evaluating on External Benchmarks (CIDDS-001 & CIC-IDS2017)
 ```bash
 # Ingest and evaluate pre-trained model on CIDDS-001 NetFlow benchmark
 python scripts/ingest_external_benchmark.py --dataset-type cidds-001
+
+# Ingest and evaluate pre-trained model on CIC-IDS2017 benchmark
+python scripts/ingest_external_benchmark.py --dataset-type cic-ids2017
 ```
 
 ---
